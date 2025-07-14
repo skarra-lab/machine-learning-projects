@@ -1,0 +1,95 @@
+# 🏡 House Price Prediction using XGBoost and Scikit-learn Pipelines
+
+This project demonstrates how to build a machine learning regression model to predict **house prices** using **XGBoost**, **Scikit-learn Pipelines**, and **ColumnTransformer** for handling both numerical and categorical data types efficiently.
+
+---
+
+## Dataset
+The dataset used contains various features about houses, such as:
+- Lot area
+- Year built
+- Building type
+- Zoning category  
+And the **target variable**: `SalePrice`.  
+
+> **Separator:** `;`
+
+---
+
+## 🔧 Steps Followed
+
+### 1️⃣ Data Preprocessing
+- Loaded the dataset using `pandas`.
+- Cleaned column names (removed whitespaces).
+- Dropped rows where `SalePrice` (the target) was missing.
+- Separated features `X` and target `y`.
+- Filled missing values in features with `0`.
+- Converted categorical columns explicitly to `string` type.
+- Split data into:
+  - **Training Set**: 80%
+  - **Testing Set**: 20%
+
+---
+
+### 2️⃣ Pipeline & Feature Engineering
+Used `ColumnTransformer` to handle mixed data types:
+- **Numerical Columns**: Scaled using `StandardScaler`.
+- **Categorical Columns**: Encoded using `OneHotEncoder` (with `handle_unknown='ignore'`).
+
+### 🔧 Pipeline Structure:
+1. **Preprocessing** (scaling + encoding)
+2. **XGBoost Regressor** (`XGBRegressor`) with `objective='reg:squarederror'`.
+
+---
+
+### 3️⃣ Model Training & Evaluation
+- Trained the pipeline on the **training data**.
+- Evaluated on the **test data** using:
+
+| Metric | Score |
+|--------|-------|
+| **Mean Squared Error (MSE)** | 1,584,411,917.83 |
+| **Root MSE (RMSE)** | 39,804.67 |
+| **R² Score** | 0.79 |
+
+> **Interpretation**: The model explains approximately **79% of the variance** in house prices.
+
+---
+
+### 4️⃣ Visualization
+
+A scatter plot comparing **Predicted vs Actual Sale Prices** to visually inspect the model’s performance.
+
+
+The red line indicates **perfect predictions** (Actual = Predicted).
+
+![Scatter Plot Example](your/path/to/image.png)  
+*(Replace with the path to your saved plot image)*
+
+---
+
+## 🚀 Key Learnings
+✅ How to preprocess **mixed feature types** (numerical & categorical) using `ColumnTransformer`.  
+✅ How to integrate `XGBoost` into a `Scikit-learn` pipeline.  
+✅ How to evaluate regression performance with **MSE**, **RMSE**, and **R² Score**.  
+✅ How to visualize model results effectively.
+
+---
+
+## 📌 Future Improvements
+- Implement **hyperparameter tuning** with `GridSearchCV`.
+- Explore more sophisticated **feature engineering**.
+- Use **cross-validation** for more robust evaluation.
+- Experiment with different regressors for comparison.
+
+---
+
+## 📚 Requirements
+```bash
+pip install pandas numpy scikit-learn matplotlib xgboost
+
+├── HousePricePrediction.csv
+├── house.py               # Main Python script
+├── README.md               # This file
+└── (optional) scatter_plot.png
+
